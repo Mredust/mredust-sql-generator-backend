@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: mredust-sql-generator
+  profiles:
+    active: dev
+  # 支持 swagger3
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.91.131:3306/mredust_sql_generator?useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: motianze4
+
+
+server:
+  address: localhost
+  port: 4090
+  servlet:
+    context-path: /api
+    session:
+      # session 1 天过期
+      timeout: "P1D"
+      cookie:
+        same-site: none
+        secure: true
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
