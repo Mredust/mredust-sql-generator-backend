@@ -23,12 +23,15 @@ public class GlobalExceptionHandler {
         return Result.fail(e.getCode(), e.getMessage());
     }
     
+<<<<<<< HEAD
     @ExceptionHandler(SchemaException.class)
     public BaseResponse<?> baseException(SchemaException e) {
         log.error("baseException：{}", e.getMessage());
         return Result.fail(e.getMessage());
     }
     
+=======
+>>>>>>> 8e5adab5d174881345a618e37c82e88ab21a513f
     @ExceptionHandler(RuntimeException.class)
     public BaseResponse<?> runtimeException(RuntimeException e) {
         log.error("runtimeException：{}", e.getMessage());
