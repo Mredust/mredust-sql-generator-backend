@@ -1,6 +1,5 @@
 package com.mredust.sqlgenerator;
 
-<<<<<<< HEAD
 import com.mredust.sqlgenerator.core.GeneratorFacade;
 import com.mredust.sqlgenerator.core.model.vo.GenerateVO;
 import com.mredust.sqlgenerator.core.schema.TableSchema;
@@ -9,17 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 
-=======
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
->>>>>>> 8e5adab5d174881345a618e37c82e88ab21a513f
 @SpringBootTest
 class MainApplicationTests {
     
     @Test
     void contextLoads() {
-<<<<<<< HEAD
+        
         TableSchema tableSchema = new TableSchema();
         tableSchema.setDatabaseName("db");
         tableSchema.setTableName("user");
@@ -60,8 +55,6 @@ class MainApplicationTests {
         
         GenerateVO generateVO = GeneratorFacade.generateData(tableSchema);
         System.out.println(generateVO);
-=======
->>>>>>> 8e5adab5d174881345a618e37c82e88ab21a513f
     }
     
 }
