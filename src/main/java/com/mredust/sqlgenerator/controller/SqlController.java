@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * SQL 相关接口
  * @author <a href="https://github.com/Mredust">Mredust</a>
  * @date: 2024/4/30 8:53
  * @version: 1.0
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/sql")
 public class SqlController {
     
-    @PostMapping("/generate/schema")
+    @PostMapping("/build")
     public BaseResponse<GenerateVO> generateBySchema(@RequestBody TableSchema tableSchema) {
         return Result.success(GeneratorFacade.generateData(tableSchema));
     }

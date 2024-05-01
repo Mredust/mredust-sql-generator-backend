@@ -45,12 +45,12 @@ public enum FieldTypeEnum {
     
     private final String javaType;
     
-    private final String typescriptType;
+    private final String javascriptType;
     
-    FieldTypeEnum(String value, String javaType, String typescriptType) {
+    FieldTypeEnum(String value, String javaType, String javascriptType) {
         this.value = value;
         this.javaType = javaType;
-        this.typescriptType = typescriptType;
+        this.javascriptType = javascriptType;
     }
     
     /**

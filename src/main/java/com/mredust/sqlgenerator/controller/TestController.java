@@ -17,4 +17,9 @@ public class TestController {
     public String test() {
         return "hello world";
     }
+    
+    @GetMapping("/test2")
+    public String test2(long id) {
+        return "result = " + id;
+    }
 }
