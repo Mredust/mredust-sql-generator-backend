@@ -5,13 +5,16 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
+ * 删除请求
+ *
  * @author <a href="https://github.com/Mredust">Mredust</a>
- * @date: 2024/4/26 18:27
- * @version: 1.0
  */
 @Data
 public class DeleteRequest implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    /**
+     * id
+     */
     private Integer id;
 }

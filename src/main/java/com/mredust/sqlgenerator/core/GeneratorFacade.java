@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * <p>数据生成器</p>
- * <p>门面模式，统一生成</p>
+ * <p>外观模式，统一生成</p>
  *
  * @author <a href="https://github.com/Mredust">Mredust</a>
  * @date: 2024/4/30 9:41
@@ -42,7 +42,7 @@ public class GeneratorFacade {
      *
      * @param tableSchema 表结构数据
      */
-    private static void validSchema(TableSchema tableSchema) {
+    public static void validSchema(TableSchema tableSchema) {
         if (tableSchema == null) {
             throw new SchemaException("表结构数据不能为空");
         }

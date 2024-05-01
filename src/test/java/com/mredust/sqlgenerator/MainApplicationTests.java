@@ -14,7 +14,6 @@ class MainApplicationTests {
     
     @Test
     void contextLoads() {
-        
         TableSchema tableSchema = new TableSchema();
         tableSchema.setDatabaseName("db");
         tableSchema.setTableName("user");
@@ -54,7 +53,6 @@ class MainApplicationTests {
         tableSchema.setFieldList(list);
         
         GenerateVO generateVO = GeneratorFacade.generateData(tableSchema);
-        System.out.println(generateVO);
     }
     
 }

@@ -9,7 +9,7 @@ use mredust_sql_generator;
 -- 用户表
 create table if not exists user
 (
-    id          bigint auto_increment comment 'id' primary key,
+    id          bigint auto_increment comment 'id' comment '主键' primary key,
     account     varchar(256)                           not null comment '用户账号',
     password    varchar(512)                           not null comment '用户密码',
     username    varchar(256)                           null comment '用户昵称',
@@ -23,4 +23,28 @@ create table if not exists user
         unique (account)
 )
     comment '用户表';
+
+
+-- 词库表
+create table if not exists dict
+(
+    id          bigint auto_increment comment 'id' comment '主键' primary key,
+    name        varchar(512)                       null comment '词库名称',
+    content     text                               null comment '词库内容（json 数组）',
+    create_time datetime default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
+    is_delete   tinyint  default 0                 not null comment '是否删除'
+) comment '词库表';
+
+
+-- 表信息表
+create table if not exists table_info
+(
+    id          bigint auto_increment comment 'id' comment '主键' primary key,
+    name        varchar(512)                       null comment '表名称',
+    content     text                               null comment '表信息（json）',
+    create_time datetime default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
+    is_delete   tinyint  default 0                 not null comment '是否删除'
+) comment '表信息表';
 
