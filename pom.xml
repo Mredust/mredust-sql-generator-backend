@@ -96,6 +96,12 @@
             <artifactId>druid</artifactId>
             <version>1.2.12</version>
         </dependency>
+        <!-- https://github.com/datafaker-net/datafaker -->
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>1.6.0</version>
+        </dependency>
     </dependencies>
 
     <build>

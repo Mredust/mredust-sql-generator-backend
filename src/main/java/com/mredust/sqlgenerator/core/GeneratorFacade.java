@@ -2,6 +2,7 @@ package com.mredust.sqlgenerator.core;
 
 
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.mredust.sqlgenerator.core.builder.DataBuilder;
 import com.mredust.sqlgenerator.core.builder.SQLBuilder;
 import com.mredust.sqlgenerator.core.model.vo.GenerateVO;
 import com.mredust.sqlgenerator.core.schema.TableSchema;
@@ -10,6 +11,7 @@ import com.mredust.sqlgenerator.exception.SchemaException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>数据生成器</p>
@@ -28,12 +30,19 @@ public class GeneratorFacade {
         validSchema(tableSchema);
         // 构建sql
         SQLBuilder sqlBuilder = new SQLBuilder();
+        // 建表SQL
         String sql = sqlBuilder.buildCreateTableSql(tableSchema);
-        
-        
+        // 生成模拟数据
+        Integer mockNum = tableSchema.getMockNum();
+        List<Map<String, Object>> dataList = DataBuilder.generateData(tableSchema, mockNum);
+        // 生成插入 SQL
+        String insertSql = sqlBuilder.buildInsertSql(tableSchema, dataList);
+        // 封装返回
         GenerateVO generateVO = new GenerateVO();
         generateVO.setTableSchema(tableSchema);
         generateVO.setCreateSql(sql);
+        generateVO.setDataList(dataList);
+        generateVO.setInsertSql(insertSql);
         return generateVO;
     }
     

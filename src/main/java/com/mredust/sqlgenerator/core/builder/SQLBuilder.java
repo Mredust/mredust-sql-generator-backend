@@ -4,6 +4,8 @@ import com.mredust.sqlgenerator.common.ResponseCode;
 import com.mredust.sqlgenerator.core.builder.sql.MySQLDialect;
 import com.mredust.sqlgenerator.core.builder.sql.SQLDialect;
 import com.mredust.sqlgenerator.core.builder.sql.SQLDialectFactory;
+import com.mredust.sqlgenerator.core.model.enums.FieldTypeEnum;
+import com.mredust.sqlgenerator.core.model.enums.MockTypeEnum;
 import com.mredust.sqlgenerator.core.schema.TableSchema;
 import com.mredust.sqlgenerator.core.schema.TableSchema.Field;
 import com.mredust.sqlgenerator.exception.BusinessException;
@@ -11,6 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * SQL 生成器
@@ -37,9 +42,15 @@ public class SQLBuilder {
         this.sqlDialect = sqlDialect;
     }
     
+    /**
+     * 构建建表 SQL
+     *
+     * @param tableSchema 表结构
+     * @return 建表SQL
+     */
     public String buildCreateTableSql(TableSchema tableSchema) {
         // 初始模板
-        String s = "-- %s%s create table if not exists %s (%s %s %s) comment='%s';";
+        String initCreateTableTemplate = "-- %s%s create table if not exists %s (%s %s %s) comment='%s';";
         // 构建表名
         String tableName = sqlDialect.wrapTableName(tableSchema.getTableName());
         // 字段构建
@@ -55,9 +66,47 @@ public class SQLBuilder {
         }
         String fieldInfo = fieldBuilder.toString();
         String tableComment = tableSchema.getTableComment();
-        String sql = String.format(s, tableComment, StringUtils.LF, tableName, StringUtils.LF, fieldInfo, StringUtils.LF, tableComment);
+        String annotation = tableName;
+        if (StringUtils.isNotBlank(tableComment)) {
+            annotation = tableComment;
+        }
+        String sql = String.format(initCreateTableTemplate, annotation, StringUtils.LF, tableName, StringUtils.LF, fieldInfo, StringUtils.LF, tableComment);
         log.info("sql result: {}", sql);
         return sql;
+    }
+    
+    public String buildInsertSql(TableSchema tableSchema, List<Map<String, Object>> dataList) {
+        // 初始模板
+        String initInsertDataTemplate = "insert into %s (%s) values (%s);";
+        // 表名
+        String tableName = sqlDialect.wrapTableName(tableSchema.getTableName());
+        // 表字段
+        List<Field> fieldList = tableSchema.getFieldList();
+        // 过滤掉不模拟的字段
+        fieldList = fieldList.stream()
+                .filter(field -> {
+                    MockTypeEnum mockTypeEnum = Optional.ofNullable(MockTypeEnum.getEnumByValue(field.getMockType())).orElse(MockTypeEnum.NONE);
+                    return !MockTypeEnum.NONE.equals(mockTypeEnum);
+                }).collect(Collectors.toList());
+        StringBuilder resultStringBuilder = new StringBuilder();
+        int total = dataList.size();
+        for (int i = 0; i < total; i++) {
+            Map<String, Object> dataRow = dataList.get(i);
+            String keyStr = fieldList.stream()
+                    .map(field -> sqlDialect.wrapFieldName(field.getFieldName()))
+                    .collect(Collectors.joining(", "));
+            String valueStr = fieldList.stream()
+                    .map(field -> getValueStr(field, dataRow.get(field.getFieldName())))
+                    .collect(Collectors.joining(", "));
+            // 填充模板
+            String result = String.format(initInsertDataTemplate, tableName, keyStr, valueStr);
+            resultStringBuilder.append(result);
+            // 最后一个字段后没有换行
+            if (i != total - 1) {
+                resultStringBuilder.append(StringUtils.LF);
+            }
+        }
+        return resultStringBuilder.toString();
     }
     
     
@@ -87,10 +136,9 @@ public class SQLBuilder {
         StringBuilder fieldBuilder = new StringBuilder();
         // 字段名
         fieldBuilder.append(fieldName);
-        String temp = "";
         // 字段类型(字段长度) int bigint(1) varchar(255)
         if (StringUtils.isNotBlank(fieldLength)) {
-            temp = String.format("%s(%s)", fieldType, fieldLength);
+            String temp = String.format("%s(%s)", fieldType, fieldLength);
             fieldBuilder.append(buildField(temp));
         } else {
             fieldBuilder.append(buildField(fieldType));
@@ -124,4 +172,41 @@ public class SQLBuilder {
         return StringUtils.SPACE + field;
     }
     
+    /**
+     * 根据列的属性获取值字符串
+     *
+     * @param field
+     * @param value
+     * @return
+     */
+    public static String getValueStr(Field field, Object value) {
+        if (field == null || value == null) {
+            return "''";
+        }
+        FieldTypeEnum fieldTypeEnum = Optional.ofNullable(FieldTypeEnum.getEnumByValue(field.getFieldType()))
+                .orElse(FieldTypeEnum.TEXT);
+        String result = String.valueOf(value);
+        switch (fieldTypeEnum) {
+            case DATETIME:
+            case TIMESTAMP:
+                return "CURRENT_TIMESTAMP".equalsIgnoreCase(result) ? result : String.format("'%s'", value);
+            case DATE:
+            case TIME:
+            case CHAR:
+            case VARCHAR:
+            case TINYTEXT:
+            case TEXT:
+            case MEDIUMTEXT:
+            case LONGTEXT:
+            case TINYBLOB:
+            case BLOB:
+            case MEDIUMBLOB:
+            case LONGBLOB:
+            case BINARY:
+            case VARBINARY:
+                return String.format("'%s'", value);
+            default:
+                return result;
+        }
+    }
 }

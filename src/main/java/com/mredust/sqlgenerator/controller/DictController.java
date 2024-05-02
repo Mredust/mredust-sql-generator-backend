@@ -1,5 +1,6 @@
 package com.mredust.sqlgenerator.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mredust.sqlgenerator.common.BaseResponse;
 import com.mredust.sqlgenerator.common.DeleteRequest;
 import com.mredust.sqlgenerator.common.ResponseCode;
@@ -14,7 +15,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 词库 相关接口
@@ -66,10 +66,10 @@ public class DictController {
         if (dictUpdateRequest == null || dictUpdateRequest.getId() <= 0) {
             throw new BusinessException(ResponseCode.PARAMS_NULL);
         }
-        Dict dict = dictService.getById(dictUpdateRequest.getId());
-        if (dict == null) {
+        if (dictService.getById(dictUpdateRequest.getId()) == null) {
             throw new BusinessException(ResponseCode.NOT_FOUND);
         }
+        Dict dict = new Dict();
         BeanUtils.copyProperties(dictUpdateRequest, dict);
         dictService.dictContentHandle(dict);
         boolean updateResult = dictService.updateById(dict);
@@ -92,11 +92,11 @@ public class DictController {
     }
     
     @GetMapping("/list")
-    public BaseResponse<List<Dict>> getDictListByPage(@RequestBody DictQueryRequest dictQueryRequest) {
+    public BaseResponse<Page<Dict>> getDictListByPage(DictQueryRequest dictQueryRequest) {
         if (dictQueryRequest == null) {
             throw new BusinessException(ResponseCode.PARAMS_NULL);
         }
-        List<Dict> dictList = dictService.getDictListByPage(dictQueryRequest);
-        return Result.success(dictList);
+        Page<Dict> dictPage = dictService.getDictListByPage(dictQueryRequest);
+        return Result.success(dictPage);
     }
 }

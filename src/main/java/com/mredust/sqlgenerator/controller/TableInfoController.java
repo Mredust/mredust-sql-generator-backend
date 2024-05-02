@@ -121,7 +121,7 @@ public class TableInfoController {
      * @return
      */
     @GetMapping("/list")
-    public BaseResponse<List<TableInfo>> getTableInfoListByPage(@RequestBody TableInfoQueryRequest tableInfoQueryRequest) {
+    public BaseResponse<List<TableInfo>> getTableInfoListByPage(@RequestBody(required = false) TableInfoQueryRequest tableInfoQueryRequest) {
         if (tableInfoQueryRequest == null) {
             throw new BusinessException(ResponseCode.PARAMS_NULL);
         }

@@ -15,7 +15,7 @@ public class DictUpdateRequest implements Serializable {
     /**
      * id
      */
-    private Integer id;
+    private Long id;
     /**
      * 词库名称
      */

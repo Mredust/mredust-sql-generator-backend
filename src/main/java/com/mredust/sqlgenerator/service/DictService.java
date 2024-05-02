@@ -1,10 +1,10 @@
 package com.mredust.sqlgenerator.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mredust.sqlgenerator.model.dto.dict.DictQueryRequest;
 import com.mredust.sqlgenerator.model.entity.Dict;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import java.util.List;
 
 /**
  * @author Mredust
@@ -25,7 +25,7 @@ public interface DictService extends IService<Dict> {
      * @param dictQueryRequest
      * @return
      */
-    List<Dict> getDictListByPage(DictQueryRequest dictQueryRequest);
+    Page<Dict> getDictListByPage(DictQueryRequest dictQueryRequest);
     
     
 }
