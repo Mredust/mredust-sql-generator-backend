@@ -36,6 +36,7 @@ public class DictController {
         }
         Dict dict = new Dict();
         BeanUtils.copyProperties(dictAddRequest, dict);
+        dictService.dictContentHandle(dict);
         boolean saveResult = dictService.save(dict);
         if (!saveResult) {
             throw new BusinessException(ResponseCode.SYSTEM_ERROR);
@@ -70,6 +71,7 @@ public class DictController {
             throw new BusinessException(ResponseCode.NOT_FOUND);
         }
         BeanUtils.copyProperties(dictUpdateRequest, dict);
+        dictService.dictContentHandle(dict);
         boolean updateResult = dictService.updateById(dict);
         if (!updateResult) {
             throw new BusinessException(ResponseCode.SYSTEM_ERROR);
