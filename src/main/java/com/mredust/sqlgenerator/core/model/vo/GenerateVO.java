@@ -11,27 +11,39 @@ import java.util.Map;
  * 生成的返回值
  *
  * @author <a href="https://github.com/Mredust">Mredust</a>
- * @date: 2024/4/30 9:37
- * @version: 1.0
  */
 @Data
 public class GenerateVO implements Serializable {
     
+    /**
+     * 表结构
+     */
     private TableSchema tableSchema;
     
+    /**
+     * 建表 SQL
+     */
     private String createSql;
     
+    /**
+     * 模拟数据
+     */
     private List<Map<String, Object>> dataList;
     
+    /**
+     * 插入数据 SQL
+     */
     private String insertSql;
     
+    /**
+     * 数据 json
+     */
     private String dataJson;
     
-    private String javaEntityCode;
-    
-    private String javaObjectCode;
-    
-    private String typescriptTypeCode;
+    /**
+     * js 模型代码
+     */
+    private String javascriptTypeCode;
     
     private static final long serialVersionUID = 1L;
 }
