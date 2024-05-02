@@ -28,12 +28,7 @@ public class DictController {
     @Resource
     private DictService dictService;
     
-    /**
-     * 添加词库
-     *
-     * @param dictAddRequest 添加请求
-     * @return
-     */
+    
     @PostMapping("/add")
     public BaseResponse<Long> addDict(@RequestBody DictAddRequest dictAddRequest) {
         if (dictAddRequest == null) {
@@ -41,7 +36,6 @@ public class DictController {
         }
         Dict dict = new Dict();
         BeanUtils.copyProperties(dictAddRequest, dict);
-        dictService.dictContentHandle(dict);
         boolean saveResult = dictService.save(dict);
         if (!saveResult) {
             throw new BusinessException(ResponseCode.SYSTEM_ERROR);
@@ -49,12 +43,6 @@ public class DictController {
         return Result.success(dict.getId());
     }
     
-    /**
-     * 删除词库
-     *
-     * @param deleteRequest 删除请求
-     * @return
-     */
     @DeleteMapping("/delete")
     public BaseResponse<Boolean> deleteDict(@RequestBody DeleteRequest deleteRequest) {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
@@ -72,12 +60,6 @@ public class DictController {
         return Result.success("删除成功");
     }
     
-    /**
-     * 更新词库
-     *
-     * @param dictUpdateRequest 更新请求
-     * @return
-     */
     @PutMapping("/update")
     public BaseResponse<Boolean> updateDict(@RequestBody DictUpdateRequest dictUpdateRequest) {
         if (dictUpdateRequest == null || dictUpdateRequest.getId() <= 0) {
@@ -88,7 +70,6 @@ public class DictController {
             throw new BusinessException(ResponseCode.NOT_FOUND);
         }
         BeanUtils.copyProperties(dictUpdateRequest, dict);
-        dictService.dictContentHandle(dict);
         boolean updateResult = dictService.updateById(dict);
         if (!updateResult) {
             throw new BusinessException(ResponseCode.SYSTEM_ERROR);
@@ -96,12 +77,6 @@ public class DictController {
         return Result.success("更新成功");
     }
     
-    /**
-     * 获取词库详情
-     *
-     * @param id 词库id
-     * @return
-     */
     @GetMapping
     public BaseResponse<Dict> getDictById(@RequestParam("id") Long id) {
         if (id == null || id <= 0) {
@@ -114,12 +89,6 @@ public class DictController {
         return Result.success(dict);
     }
     
-    /**
-     * 获取词库分页列表
-     *
-     * @param dictQueryRequest 查询请求
-     * @return
-     */
     @GetMapping("/list")
     public BaseResponse<List<Dict>> getDictListByPage(@RequestBody DictQueryRequest dictQueryRequest) {
         if (dictQueryRequest == null) {
