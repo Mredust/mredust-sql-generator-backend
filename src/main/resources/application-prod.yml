@@ -1,3 +1,4 @@
+#@author <a href="https://github.com/Mredust">Mredust</a>
 spring:
   application:
     name: mredust-sql-generator

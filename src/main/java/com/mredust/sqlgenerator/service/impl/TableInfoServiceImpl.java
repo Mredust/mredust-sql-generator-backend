@@ -23,9 +23,8 @@ import static com.mredust.sqlgenerator.constant.TableInfoConstant.TABLE_INFO_CON
 import static com.mredust.sqlgenerator.constant.TableInfoConstant.TABLE_INFO_NAME_MAX_LENGTH;
 
 /**
- * @author Mredust
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  * @description 针对表【table_info(表信息表)】的数据库操作Service实现
- * @createDate 2024-05-02 11:16:33
  */
 @Slf4j
 @Service

@@ -1,9 +1,7 @@
 package com.mredust.sqlgenerator.common;
 
 /**
- * @author: Mredust
- * @date: 2024/4/13 17:37
- * @version: 1.0
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  */
 public class Result {
     private Result() {

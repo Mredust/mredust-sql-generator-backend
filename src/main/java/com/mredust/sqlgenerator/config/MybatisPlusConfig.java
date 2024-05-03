@@ -8,9 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author: Mredust
- * @date: 2024/4/16 20:16
- * @version: 1.0
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  */
 @Configuration
 @MapperScan("com.mredust.sqlgenerator.mapper")

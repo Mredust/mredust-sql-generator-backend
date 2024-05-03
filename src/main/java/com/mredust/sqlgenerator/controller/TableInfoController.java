@@ -15,7 +15,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 表 相关接口
@@ -33,7 +32,7 @@ public class TableInfoController {
      * 添加表
      *
      * @param tableInfoAddRequest 添加请求
-     * @return
+     * @return 表id
      */
     @PostMapping("/add")
     public BaseResponse<Long> addTableInfo(@RequestBody TableInfoAddRequest tableInfoAddRequest) {
@@ -54,7 +53,7 @@ public class TableInfoController {
      * 删除表
      *
      * @param deleteRequest 删除请求
-     * @return
+     * @return 是否删除成功
      */
     @DeleteMapping("/delete")
     public BaseResponse<Boolean> deleteTableInfo(@RequestBody DeleteRequest deleteRequest) {
@@ -77,7 +76,7 @@ public class TableInfoController {
      * 更新表
      *
      * @param tableInfoUpdateRequest 更新请求
-     * @return
+     * @return 是否更新成功
      */
     @PutMapping("/update")
     public BaseResponse<Boolean> updateTableInfo(@RequestBody TableInfoUpdateRequest tableInfoUpdateRequest) {
@@ -101,7 +100,7 @@ public class TableInfoController {
      * 获取表详情
      *
      * @param id 表id
-     * @return
+     * @return 表详情
      */
     @GetMapping
     public BaseResponse<TableInfo> getTableInfoById(@RequestParam("id") Long id) {
@@ -119,7 +118,7 @@ public class TableInfoController {
      * 获取表分页列表
      *
      * @param tableInfoQueryRequest 查询请求
-     * @return
+     * @return 表分页列表
      */
     @GetMapping("/list")
     public BaseResponse<Page<TableInfo>> getTableInfoListByPage(TableInfoQueryRequest tableInfoQueryRequest) {

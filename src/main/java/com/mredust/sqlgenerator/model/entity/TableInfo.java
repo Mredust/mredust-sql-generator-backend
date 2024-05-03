@@ -10,7 +10,7 @@ import lombok.Data;
 /**
  * 表信息表
  *
- * @author Mredust
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  * @TableName table_info
  */
 @TableName(value = "table_info")

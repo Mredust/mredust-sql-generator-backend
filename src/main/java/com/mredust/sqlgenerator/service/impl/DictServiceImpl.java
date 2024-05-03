@@ -23,9 +23,8 @@ import static com.mredust.sqlgenerator.constant.DictConstant.DICT_CONTENT_MAX_LE
 import static com.mredust.sqlgenerator.constant.DictConstant.DICT_NAME_MAX_LENGTH;
 
 /**
- * @author Mredust
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  * @description 针对表【dict(词库表)】的数据库操作Service实现
- * @createDate 2024-05-01 21:32:03
  */
 @Slf4j
 @Service

@@ -15,7 +15,7 @@ public class TableInfoUpdateRequest implements Serializable {
     /**
      * id
      */
-    private Integer id;
+    private Long id;
     /**
      * 词库名称
      */

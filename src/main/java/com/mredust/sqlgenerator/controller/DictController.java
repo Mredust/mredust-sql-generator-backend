@@ -29,6 +29,12 @@ public class DictController {
     private DictService dictService;
     
     
+    /**
+     * 添加词库
+     *
+     * @param dictAddRequest 新增请求
+     * @return 新增词库id
+     */
     @PostMapping("/add")
     public BaseResponse<Long> addDict(@RequestBody DictAddRequest dictAddRequest) {
         if (dictAddRequest == null) {
@@ -44,6 +50,12 @@ public class DictController {
         return Result.success(dict.getId());
     }
     
+    /**
+     * 删除词库
+     *
+     * @param deleteRequest 删除请求
+     * @return 删除结果
+     */
     @DeleteMapping("/delete")
     public BaseResponse<Boolean> deleteDict(@RequestBody DeleteRequest deleteRequest) {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
@@ -61,6 +73,12 @@ public class DictController {
         return Result.success("删除成功");
     }
     
+    /**
+     * 更新词库
+     *
+     * @param dictUpdateRequest 更新请求
+     * @return 更新结果
+     */
     @PutMapping("/update")
     public BaseResponse<Boolean> updateDict(@RequestBody DictUpdateRequest dictUpdateRequest) {
         if (dictUpdateRequest == null || dictUpdateRequest.getId() <= 0) {
@@ -71,6 +89,7 @@ public class DictController {
         }
         Dict dict = new Dict();
         BeanUtils.copyProperties(dictUpdateRequest, dict);
+        
         dictService.dictContentHandle(dict);
         boolean updateResult = dictService.updateById(dict);
         if (!updateResult) {
@@ -79,6 +98,12 @@ public class DictController {
         return Result.success("更新成功");
     }
     
+    /**
+     * 根据id获取词库
+     *
+     * @param id 词库id
+     * @return 词库
+     */
     @GetMapping
     public BaseResponse<Dict> getDictById(@RequestParam("id") Long id) {
         if (id == null || id <= 0) {
@@ -91,6 +116,12 @@ public class DictController {
         return Result.success(dict);
     }
     
+    /**
+     * 分页获取词库列表
+     *
+     * @param dictQueryRequest 查询请求
+     * @return 词库列表
+     */
     @GetMapping("/list")
     public BaseResponse<Page<Dict>> getDictListByPage(DictQueryRequest dictQueryRequest) {
         if (dictQueryRequest == null) {

@@ -5,9 +5,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
-* @author Mredust
+* @author <a href="https://github.com/Mredust">Mredust</a>
 * @description 针对表【dict(词库表)】的数据库操作Mapper
-* @createDate 2024-05-01 21:32:03
 * @Entity com.mredust.sqlgenerator.model.entity.Dict
 */
 @Mapper

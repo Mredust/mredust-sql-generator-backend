@@ -7,9 +7,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 
 /**
- * @author Mredust
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  * @description 针对表【dict(词库表)】的数据库操作Service
- * @createDate 2024-05-01 21:32:03
  */
 public interface DictService extends IService<Dict> {
     /**

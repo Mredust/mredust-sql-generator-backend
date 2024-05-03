@@ -6,8 +6,6 @@ import java.io.Serializable;
 
 /**
  * @author <a href="https://github.com/Mredust">Mredust</a>
- * @date: 2024/4/26 19:17
- * @version: 1.0
  */
 @Data
 public class PageRequest implements Serializable {
@@ -21,5 +19,4 @@ public class PageRequest implements Serializable {
      * 页面大小
      */
     private long pageSize = 10;
-    
 }

@@ -5,12 +5,10 @@ import com.mredust.sqlgenerator.model.dto.table.TableInfoQueryRequest;
 import com.mredust.sqlgenerator.model.entity.TableInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import java.util.List;
 
 /**
-* @author Mredust
+* @author <a href="https://github.com/Mredust">Mredust</a>
 * @description 针对表【table_info(表信息表)】的数据库操作Service
-* @createDate 2024-05-02 11:16:33
 */
 public interface TableInfoService extends IService<TableInfo> {
     

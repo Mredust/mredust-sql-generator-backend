@@ -3,10 +3,9 @@ package com.mredust.sqlgenerator.common;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+
 /**
- * @author: Mredust
- * @date: 2024/4/13 17:22
- * @version: 1.0
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  */
 @Getter
 @AllArgsConstructor

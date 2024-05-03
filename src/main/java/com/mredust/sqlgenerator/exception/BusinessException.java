@@ -4,9 +4,7 @@ import com.mredust.sqlgenerator.common.ResponseCode;
 import lombok.Getter;
 
 /**
- * @author: Mredust
- * @date: 2024/4/12 18:35
- * @version: 1.0
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  */
 @Getter
 public class BusinessException extends RuntimeException {

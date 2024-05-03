@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * 测试控制器
  * @author <a href="https://github.com/Mredust">Mredust</a>
- * @date: 2024/4/29 22:46
- * @version: 1.0
  */
 @RestController
 @RequestMapping("/test")

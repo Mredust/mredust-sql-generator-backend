@@ -8,7 +8,7 @@ import lombok.Data;
 
 /**
  * 用户表
- * @author Mredust
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  * @TableName user
  */
 @TableName(value ="user")

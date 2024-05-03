@@ -3,7 +3,7 @@ package com.mredust.sqlgenerator.constant;
 /**
  * 词库常量
  *
- * @author Mredust
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  */
 public interface DictConstant {
     

@@ -3,7 +3,7 @@ package com.mredust.sqlgenerator.constant;
 /**
  * 表信息常量
  *
- * @author Mredust
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  */
 public interface TableInfoConstant {
     

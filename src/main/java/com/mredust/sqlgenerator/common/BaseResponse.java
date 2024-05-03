@@ -5,9 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author: Mredust
- * @date: 2024/4/12 17:36
- * @version: 1.0
+ * @author <a href="https://github.com/Mredust">Mredust</a>
  */
 @Data
 public class BaseResponse<T> implements Serializable {

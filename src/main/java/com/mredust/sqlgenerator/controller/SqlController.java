@@ -29,8 +29,6 @@ import java.util.stream.Collectors;
  * SQL 相关接口
  *
  * @author <a href="https://github.com/Mredust">Mredust</a>
- * @date: 2024/4/30 8:53
- * @version: 1.0
  */
 @RestController
 @RequestMapping("/sql")
@@ -50,7 +48,7 @@ public class SqlController {
     /**
      * 根据 sql 获取 schema
      *
-     * @param generateSchemaRequest
+     * @param generateSchemaRequest SQL
      * @return
      */
     @PostMapping("/analyze")
