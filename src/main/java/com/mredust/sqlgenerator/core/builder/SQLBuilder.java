@@ -70,9 +70,7 @@ public class SQLBuilder {
         if (StringUtils.isNotBlank(tableComment)) {
             annotation = tableComment;
         }
-        String sql = String.format(initCreateTableTemplate, annotation, StringUtils.LF, tableName, StringUtils.LF, fieldInfo, StringUtils.LF, tableComment);
-        log.info("sql result: {}", sql);
-        return sql;
+        return String.format(initCreateTableTemplate, annotation, StringUtils.LF, tableName, StringUtils.LF, fieldInfo, StringUtils.LF, tableComment);
     }
     
     public String buildInsertSql(TableSchema tableSchema, List<Map<String, Object>> dataList) {

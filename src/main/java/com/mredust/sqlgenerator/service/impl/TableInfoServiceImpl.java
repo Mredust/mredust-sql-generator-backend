@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-import java.util.List;
 
 import static com.mredust.sqlgenerator.constant.TableInfoConstant.TABLE_INFO_CONTENT_MAX_LENGTH;
 import static com.mredust.sqlgenerator.constant.TableInfoConstant.TABLE_INFO_NAME_MAX_LENGTH;
@@ -71,19 +70,17 @@ public class TableInfoServiceImpl extends ServiceImpl<TableInfoMapper, TableInfo
      * @return
      */
     @Override
-    public List<TableInfo> getTableInfoListByPage(TableInfoQueryRequest tableInfoQueryRequest) {
+    public Page<TableInfo> getTableInfoListByPage(TableInfoQueryRequest tableInfoQueryRequest) {
         long pageNum = tableInfoQueryRequest.getPageNum();
         long pageSize = tableInfoQueryRequest.getPageSize();
         String name = tableInfoQueryRequest.getName();
         String content = tableInfoQueryRequest.getContent();
         Page<TableInfo> page = new Page<>(pageNum, pageSize);
-        List<TableInfo> tableInfoList = Db.lambdaQuery(TableInfo.class)
+        return Db.lambdaQuery(TableInfo.class)
                 .like(StringUtils.isNotEmpty(name), TableInfo::getName, name)
                 .like(StringUtils.isNotEmpty(content), TableInfo::getContent, content)
                 .orderBy(true, false, TableInfo::getCreateTime)
-                .page(page).getRecords();
-        log.info("getTableInfoListByPage tableInfoList: {}", tableInfoList);
-        return tableInfoList;
+                .page(page);
     }
 }
 

@@ -1,5 +1,6 @@
 package com.mredust.sqlgenerator.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mredust.sqlgenerator.common.BaseResponse;
 import com.mredust.sqlgenerator.common.DeleteRequest;
 import com.mredust.sqlgenerator.common.ResponseCode;
@@ -22,7 +23,7 @@ import java.util.List;
  * @author <a href="https://github.com/Mredust">Mredust</a>
  */
 @RestController
-@RequestMapping("/table")
+@RequestMapping("/table-info")
 public class TableInfoController {
     
     @Resource
@@ -83,10 +84,10 @@ public class TableInfoController {
         if (tableInfoUpdateRequest == null || tableInfoUpdateRequest.getId() <= 0) {
             throw new BusinessException(ResponseCode.PARAMS_NULL);
         }
-        TableInfo tableInfo = tableInfoService.getById(tableInfoUpdateRequest.getId());
-        if (tableInfo == null) {
+        if (tableInfoService.getById(tableInfoUpdateRequest.getId()) == null) {
             throw new BusinessException(ResponseCode.NOT_FOUND);
         }
+        TableInfo tableInfo = new TableInfo();
         BeanUtils.copyProperties(tableInfoUpdateRequest, tableInfo);
         tableInfoService.tableInfoContentHandle(tableInfo);
         boolean updateResult = tableInfoService.updateById(tableInfo);
@@ -121,11 +122,11 @@ public class TableInfoController {
      * @return
      */
     @GetMapping("/list")
-    public BaseResponse<List<TableInfo>> getTableInfoListByPage(@RequestBody(required = false) TableInfoQueryRequest tableInfoQueryRequest) {
+    public BaseResponse<Page<TableInfo>> getTableInfoListByPage(TableInfoQueryRequest tableInfoQueryRequest) {
         if (tableInfoQueryRequest == null) {
             throw new BusinessException(ResponseCode.PARAMS_NULL);
         }
-        List<TableInfo> tableInfoList = tableInfoService.getTableInfoListByPage(tableInfoQueryRequest);
-        return Result.success(tableInfoList);
+        Page<TableInfo> pageList = tableInfoService.getTableInfoListByPage(tableInfoQueryRequest);
+        return Result.success(pageList);
     }
 }

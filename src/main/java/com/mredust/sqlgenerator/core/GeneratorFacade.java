@@ -3,6 +3,7 @@ package com.mredust.sqlgenerator.core;
 
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.mredust.sqlgenerator.core.builder.DataBuilder;
+import com.mredust.sqlgenerator.core.builder.JsonBuilder;
 import com.mredust.sqlgenerator.core.builder.SQLBuilder;
 import com.mredust.sqlgenerator.core.model.vo.GenerateVO;
 import com.mredust.sqlgenerator.core.schema.TableSchema;
@@ -37,12 +38,15 @@ public class GeneratorFacade {
         List<Map<String, Object>> dataList = DataBuilder.generateData(tableSchema, mockNum);
         // 生成插入 SQL
         String insertSql = sqlBuilder.buildInsertSql(tableSchema, dataList);
+        // 生成数据 json
+        String dataJson = JsonBuilder.buildJson(dataList);
         // 封装返回
         GenerateVO generateVO = new GenerateVO();
         generateVO.setTableSchema(tableSchema);
         generateVO.setCreateSql(sql);
         generateVO.setDataList(dataList);
         generateVO.setInsertSql(insertSql);
+        generateVO.setDataJson(dataJson);
         return generateVO;
     }
     

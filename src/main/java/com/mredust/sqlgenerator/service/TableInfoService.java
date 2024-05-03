@@ -1,5 +1,6 @@
 package com.mredust.sqlgenerator.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mredust.sqlgenerator.model.dto.table.TableInfoQueryRequest;
 import com.mredust.sqlgenerator.model.entity.TableInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -24,5 +25,5 @@ public interface TableInfoService extends IService<TableInfo> {
      * @param tableInfoQueryRequest
      * @return
      */
-    List<TableInfo> getTableInfoListByPage(TableInfoQueryRequest tableInfoQueryRequest);
+    Page<TableInfo> getTableInfoListByPage(TableInfoQueryRequest tableInfoQueryRequest);
 }

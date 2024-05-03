@@ -40,10 +40,6 @@ public class GenerateVO implements Serializable {
      */
     private String dataJson;
     
-    /**
-     * js 模型代码
-     */
-    private String javascriptTypeCode;
     
     private static final long serialVersionUID = 1L;
 }

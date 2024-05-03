@@ -77,19 +77,17 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
      * @return
      */
     @Override
-    public  Page<Dict>  getDictListByPage(DictQueryRequest dictQueryRequest) {
+    public Page<Dict> getDictListByPage(DictQueryRequest dictQueryRequest) {
         long pageNum = dictQueryRequest.getPageNum();
         long pageSize = dictQueryRequest.getPageSize();
         String name = dictQueryRequest.getName();
         String content = dictQueryRequest.getContent();
         Page<Dict> page = new Page<>(pageNum, pageSize);
-        Page<Dict> dictPage = Db.lambdaQuery(Dict.class)
+        return Db.lambdaQuery(Dict.class)
                 .like(StringUtils.isNotEmpty(name), Dict::getName, name)
                 .like(StringUtils.isNotEmpty(content), Dict::getContent, content)
                 .orderBy(true, false, Dict::getCreateTime)
                 .page(page);
-        log.info("getDictListByPage dictList:{}", dictPage);
-        return dictPage;
     }
 }
 

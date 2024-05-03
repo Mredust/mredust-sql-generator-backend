@@ -24,6 +24,9 @@ public class DataBuilder {
     public static List<Map<String, Object>> generateData(TableSchema tableSchema, int mockNum) {
         ArrayList<Map<String, Object>> dataList = new ArrayList<>();
         List<Field> fieldList = tableSchema.getFieldList();
+        if (mockNum <= 0) {
+            mockNum = 20;
+        }
         // 初始化数据
         for (int i = 0; i < mockNum; i++) {
             dataList.add(new HashMap<>());
