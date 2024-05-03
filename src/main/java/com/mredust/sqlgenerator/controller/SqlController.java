@@ -1,6 +1,5 @@
 package com.mredust.sqlgenerator.controller;
 
-import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.EasyExcelFactory;
 import com.mredust.sqlgenerator.common.BaseResponse;
 import com.mredust.sqlgenerator.common.ResponseCode;
