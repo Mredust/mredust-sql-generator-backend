@@ -11,13 +11,12 @@ spring:
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.91.131:3306/mredust_sql_generator?useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.91.131:3306/mredust_sql_generator?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
-    password: motianze4
+    password: # todo 数据库密码
 
 
 server:
-  address: localhost
   port: 4090
   servlet:
     context-path: /api

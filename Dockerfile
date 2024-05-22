@@ -1,6 +1,8 @@
 # Docker 镜像构建
 FROM maven:3.5-jdk-8-alpine AS builder
 
+LABEL author="Mredust"
+
 # Copy local code to the container image.
 WORKDIR /app
 COPY pom.xml .

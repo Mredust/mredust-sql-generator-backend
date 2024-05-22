@@ -7,7 +7,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.91.131:3306/mredust_sql_generator?useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
-    password: motianze4
+    password: # todo 数据库密码
 
 
 server:

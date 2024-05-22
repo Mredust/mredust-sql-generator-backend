@@ -25,11 +25,21 @@
 
 
 
+## 页面预览
+
+![](https://raw.githubusercontent.com/Mredust/images/main/file/7a88cde3e1b716e9331b7d3223f2730.png)
+
+![](https://raw.githubusercontent.com/Mredust/images/main/file/a2e5b590eebf93359758d1b2ca9c8e6.png)
+
+![](https://raw.githubusercontent.com/Mredust/images/main/file/e9fc0675a956a78dc8b553df79e7847.png)
+
+![](https://raw.githubusercontent.com/Mredust/images/main/file/f72769e8a3e283800f82d66d8dd5401.png)
+
 
 
 ## 模块设计
 
-数据库设计含有敏感数据，估不设计用户模块以及建站，用户只需拉取代码，自行部署使用
+数据库设计含有敏感数据，估不设计用户模块以及建站，用户只需拉取代码，自行部署使用，如不想自行部署可以在线使用[鱼皮：SQL之父](http://sqlfather.yupi.icu/)
 
 ### 前端管理
 
